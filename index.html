@@ -10,17 +10,15 @@
 </head>
 <body>
     <div class="container">
-        <div class="to-do-list">
-             <h1>To Do List</h1>
-            <div class="new__to-do">
-                <input type="text" class="input" placeholder="Text">
-                <button class="add">Add</button>
-                <button class="clearIsDone">Clear completed</button>
-                <button class="clearAll">Clear all</button>
-            </div>
-            <div class="wrapper">
-                <ol class="to-do"></ol>
-            </div>
+            <h1 class="title">To Do List</h1>
+        <div class="main">
+            <input type="text" class="input" placeholder="Text">
+            <button class="add">Add</button>
+            <button id="clearCompleted" class ="clear">Clear completed</button>
+            <button id="clearAll" class ="clear">Clear all</button>
+        </div>
+        <div class="wrapper">
+            <ol class="toDo"></ol>
         </div>
     </div>
     <script src="./main.js"></script>

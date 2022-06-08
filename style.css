@@ -1,27 +1,21 @@
 
 .container {
-    margin: 0 auto;
-    padding-top: 50px;
-}
-
-.to-do-list {
     max-width: 800px;
-    display: block;
-    margin: 0 auto 40px;
-    background-color: #1BA39C;
+    margin:  40px auto;
+    background-color: #538d8a;
     padding: 30px;
     border-radius: 10px;
     border: 2px solid black;
 }
 
-h1 {
+.title {
     text-align: center;
     margin-top: 0;
     color: #fff;
     font-size: 40px; 
 }
 
-.new__to-do {
+.main {
     display: flex;
     text-align: center; 
 }
@@ -38,35 +32,28 @@ h1 {
     font-size: 15px;
 }
 
-.clearAll {
+.clear {
     margin-left: 20px;
     width: 100px;
     cursor: pointer;
     font-size: 15px;
 }
 
-.clearIsDone{
-    margin-left: 20px;
-    width: 100px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.to-do {
+.toDo {
     padding-left: 10px; 
 }
 
-.to-do li {
+.toDo li {
     border-bottom: 1px solid #000;
     padding: 5px 0;
     font-size: 18px;
     word-break: break-word;
 }
 
-.to-do li:last-child{
+.toDo li:last-child{
     border-bottom: none;
 }
 
-span {
+.toDo span {
     font-size: 15px;
 }

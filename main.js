@@ -1,8 +1,8 @@
 const text = document.querySelector('.input');
 const add =  document.querySelector('.add');
-const toDo = document.querySelector('.to-do');
-const clearAll = document.querySelector('.clearAll');
-const clearIsDone = document.querySelector('.clearIsDone');
+const toDo = document.querySelector('.toDo');
+const clearAll = document.querySelector('#clearAll');
+const clearCompleted = document.querySelector('#clearCompleted');
 let toDoId = 0;
 let toDoList = [];
 
@@ -67,7 +67,7 @@ clearAll.addEventListener("click", function () {
     toDoId = 0;
   });
 
-clearIsDone.addEventListener("click", function(){
+clearCompleted.addEventListener("click", function(){
     let newArray = toDoList.filter(function (toDo)
     {
         return toDo.isDone === false;
