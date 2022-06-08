@@ -1,0 +1,72 @@
+
+.container {
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.to-do-list {
+    max-width: 800px;
+    display: block;
+    margin: 0 auto 40px;
+    background-color: #1BA39C;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+    color: #fff;
+    font-size: 40px; 
+}
+
+.new__to-do {
+    display: flex;
+    text-align: center; 
+}
+
+.input {
+    width: 600px;
+    padding: 10px; 
+}
+
+.add {
+    margin-left: 20px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.clearAll {
+    margin-left: 20px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.clearIsDone{
+    margin-left: 20px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.to-do {
+    padding-left: 10px; 
+}
+
+.to-do li {
+    border-bottom: 1px solid #000;
+    padding: 5px 0;
+    font-size: 18px;
+    word-break: break-word;
+}
+
+.to-do li:last-child{
+    border-bottom: none;
+}
+
+span {
+    font-size: 15px;
+}
