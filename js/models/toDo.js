@@ -1,4 +1,4 @@
-class toDo {
+class ToDo {
     id = Date. now();
     title;
     date = new Date().toLocaleString();

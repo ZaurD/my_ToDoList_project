@@ -4,11 +4,11 @@ const list = document.querySelector('.list');
 const clearAll = document.querySelector('#clearAll');
 const clearCompleted = document.querySelector('#clearCompleted');
 
-const newToDo = new toDoList();
+const newToDo = new ToDoList();
 
 add.addEventListener('click', function(){
     if(!text.value) return;
-    newToDo.addToDo(new toDo(text.value));
+    newToDo.addToDo(new ToDo(text.value));
     localStorage.setItem('todo', JSON.stringify(newToDo.toDos));
     text.value = '';
     displayToDoList();
@@ -16,7 +16,7 @@ add.addEventListener('click', function(){
 
 clearAll.addEventListener("click", function () {
     newToDo.toDos = []
-    localStorage.setItem("todo", JSON.stringify(toDoList));
+    localStorage.setItem("todo", JSON.stringify(newToDo.toDos));
     list.innerHTML = '';
     displayToDoList()
 });

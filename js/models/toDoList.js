@@ -1,4 +1,4 @@
-class toDoList{
+class ToDoList{
     toDos = [];
 
     construktor(toDos){
