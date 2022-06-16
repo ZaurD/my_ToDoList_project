@@ -1,7 +1,7 @@
 class ToDoList{
     toDos = [];
 
-    construktor(toDos){
+    constructor(toDos){
         this.toDos = toDos;
     }
     
