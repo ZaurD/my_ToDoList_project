@@ -1,10 +1,58 @@
+
+const newToDo = new ToDoList();
+
 const text = document.querySelector('.input');
 const add =  document.querySelector('.add');
 const list = document.querySelector('.list');
 const clearAll = document.querySelector('#clearAll');
 const clearCompleted = document.querySelector('#clearCompleted');
+const search = document.querySelector('#search');
+const allTasks = document.querySelector('#allTasks');
+const completedTasks = document.querySelector('#completedTasks');
+const tobeDone = document.querySelector('#tobeDone');
 
-const newToDo = new ToDoList();
+search.addEventListener('click', function(){
+    if(!text.value) return;
+    let newArray = newToDo.toDos.filter(function (toDo)
+    {
+        return toDo.title === text.value;
+    });
+    if(newArray.length > 0){
+        newToDo.toDos = newArray;
+        displayToDoList();
+    }
+    else alert('Nothing was found!')
+    text.value = '';
+});
+
+allTasks.addEventListener('click', function(){
+    newToDo.toDos = JSON.parse(localStorage.getItem('todo'));
+    displayToDoList();  
+});
+
+completedTasks.addEventListener('click', function(){
+    newToDo.toDos = JSON.parse(localStorage.getItem('todo'));
+    let newArray = newToDo.toDos.filter(function (toDo)
+    {
+        return toDo.isDone === true;
+    });
+    if(newArray.length > 0){
+        newToDo.toDos = newArray;
+        displayToDoList();
+    }
+});
+
+tobeDone.addEventListener('click', function(){
+    newToDo.toDos = JSON.parse(localStorage.getItem('todo'));
+    let newArray = newToDo.toDos.filter(function (toDo)
+    {
+        return toDo.isDone === false;
+    });
+    if(newArray.length > 0){
+        newToDo.toDos = newArray;
+        displayToDoList();
+    }
+});
 
 add.addEventListener('click', function(){
     if(!text.value) return;
@@ -27,6 +75,7 @@ clearCompleted.addEventListener("click", function(){
         return toDo.isDone === false;
     });
     newToDo.toDos = newArray;
+    localStorage.setItem("todo", JSON.stringify(newToDo.toDos));
     displayToDoList();
 });
 
@@ -46,6 +95,10 @@ list.addEventListener('change', function(event){
 if(localStorage.getItem('todo')){
     newToDo.toDos = JSON.parse(localStorage.getItem('todo'));
     displayToDoList();
+}
+
+if(!localStorage.getItem('todo')){
+    newToDo.toDos = []
 }
 
 function displayToDoList(){
