@@ -1,4 +1,4 @@
-class ToDoListCreateHtml{
+class ToDoListRender{
     constructor() {
         const title = document.createElement('h1');
         const main = document.createElement('div');
