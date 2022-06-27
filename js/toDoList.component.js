@@ -12,7 +12,6 @@ const completedTasks = document.querySelector('#completedTasks');
 const tobeDone = document.querySelector('#tobeDone');
 
 add.addEventListener('click', function(){
-    newToDo.updateToDoList();
     if(!text.value) return;
     newToDo.addToDo(text.value);
     text.value = '';
