@@ -2,7 +2,7 @@ fetch('http://api.openweathermap.org/data/2.5/weather?q=Baku&APPID=fe7cf4ee8c458
     .then((resp)=> {return resp.json()})
     .then((data) => {
         document.querySelector('.weather').innerHTML = 
-        `<marquee direction="right" scrollamount="10"> 
+        `<marquee direction="right" scrollamount="5"> 
         ${data.name}, Azerbaijan Today: &emsp;
         Temperature: ${(data.main.temp - 273).toFixed()}&deg;C &emsp;     
         Feel like: ${(data.main.feels_like - 273).toFixed()}&deg;C &emsp;   
