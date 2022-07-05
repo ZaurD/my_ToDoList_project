@@ -43,7 +43,7 @@
     word-break: break-word;
 }
 
-.todoList_tasks li:last-child{
+.todoList_tasks li:last-child {
     border-bottom: none;
 }
 

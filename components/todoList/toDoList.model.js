@@ -1,14 +1,14 @@
-class ToDoList{
+class ToDoList {
 
   constructor(initialData = []) {
-    this.toDos =initialData;
+    this.toDos = initialData;
   }
     
   addToDo(todoText) {
     if(this.toDos.find(o => o.title === todoText)) {
       alert("duplicates found")
     }
-    else{
+    else {
     const todo = {
       id: Math.floor(Math.random() * 9999),
       title: todoText,
@@ -19,38 +19,35 @@ class ToDoList{
     }
   }
 
-  searchToDo(todoText){
-    this.toDos = this.toDos.filter(function (toDo)
-    {
-        return toDo.title === todoText;
+  searchToDo(todoText) {
+    this.toDos = this.toDos.filter(function (toDo) {
+      return toDo.title === todoText;
     });
     return this.toDos
   }
   
-  completedTasks(){
-    this.toDos = this.toDos.filter(function (toDo)
-    {
-        return toDo.isDone === true;
+  completedTasks() {
+    this.toDos = this.toDos.filter(function (toDo) {
+      return toDo.isDone === true;
     });
     return this.toDos
   }
 
-  tobeDone(){
-    this.toDos = this.toDos.filter(function (toDo)
-    {
-        return toDo.isDone === false;
+  tobeDone() {
+    this.toDos = this.toDos.filter(function (toDo) {
+      return toDo.isDone === false;
     });
     return this.toDos
   }
 
-  clearAll(){
+  clearAll() {
     this.toDos = [];
   }
 
-  clearCompleted(){
-    this.toDos = this.toDos.filter(function (toDo)
-    {
-        return toDo.isDone === false;
+  clearCompleted() {
+
+    this.toDos = this.toDos.filter(function (toDo) {
+      return toDo.isDone === false;
     });
     return this.toDos
   }
