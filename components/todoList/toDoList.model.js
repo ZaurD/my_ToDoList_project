@@ -15,7 +15,7 @@ class ToDoList {
       date : new Date().toLocaleString(),
       isDone : false
     }
-    this.toDos.push(todo)
+      this.toDos.push(todo)
     }
   }
 

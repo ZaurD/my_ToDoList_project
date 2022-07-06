@@ -53,7 +53,6 @@ class ToDoListRender {
         this.newTodoInput = document.createElement('input');
         this.newTodoInput.classList.add('todoList_input');
         this.newTodoInput.placeholder = 'Text';
-        this.newTodoInput.value="hello";
         return this.newTodoInput;
     }
 
