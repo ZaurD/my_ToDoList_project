@@ -1,16 +1,23 @@
 class Storage {
     
-    storage;
-  
-    constructor() {
-      this.storage = JSON.parse(localStorage.getItem('todo'));
+  storage;
+
+  constructor() {
+
+    this.storage = this.updateData();
+  }
+
+  saveData(data) {
+      localStorage.setItem('todo', JSON.stringify(data));
+  }
+
+  updateData() {
+
+    if(localStorage.getItem('todo')) {
+      return JSON.parse(localStorage.getItem('todo'));
     }
-  
-    saveData(data) {
-        localStorage.setItem('todo', JSON.stringify(data));
-    }
-  
-    updateData() {
-      return JSON.parse(localStorage.getItem('todo')) || "null";
+    else {
+      return [];
     }
   }
+}

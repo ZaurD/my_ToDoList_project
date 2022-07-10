@@ -77,7 +77,7 @@ class ToDoListComponent {
 
         window.onload = (event) => {
             if(localStorage.getItem('todo')) {
-                app.newToDo.toDos = app.data.updateData();
+                this.newToDo.toDos = this.data.updateData();
                 displayToDoList();
             }
         };
@@ -87,7 +87,7 @@ class ToDoListComponent {
             if(this.newToDo.toDos.length === 0) {
             this.toDoListRender.newTodoList.innerHTML = '';
                 this.newToDo.toDos = [];
-                this.data.saveData(app.newToDo.toDos);
+                this.data.saveData(this.newToDo.toDos);
             }
             this.newToDo.toDos.forEach((item, i) => {
                 displayToDo += ` 
