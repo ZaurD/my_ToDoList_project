@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "module": "amd",
+    "target": "es6",
+    "allowJs": true,
+    "outFile": "dist/main.js",
+    "sourceMap": true,
+    // "watch": true
+  },
+
+  "files": [
+  "main.ts"
+  ]
+}

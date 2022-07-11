@@ -1,25 +1,32 @@
-class ToDoList {
+export default class ToDoList {
+  todo: {
+    id: number, 
+    title: string, 
+    date: string,
+    isDone: boolean
+  }
+  toDos: any[];
 
   constructor(initialData = []) {
     this.toDos = initialData;
   }
     
-  addToDo(todoText) {
+  addToDo(todoText: string) {
     if(this.toDos.find(o => o.title === todoText)) {
       alert("duplicates found")
     }
     else {
-    const todo = {
+      this.todo = {
       id: Math.floor(Math.random() * 9999),
       title: todoText,
       date : new Date().toLocaleString(),
       isDone : false
     }
-      this.toDos.push(todo)
+      this.toDos.push(this.todo)
     }
   }
 
-  searchToDo(todoText) {
+  searchToDo(todoText: string) {
     this.toDos = this.toDos.filter(function (toDo) {
       return toDo.title === todoText;
     });
@@ -42,10 +49,10 @@ class ToDoList {
 
   clearAll() {
     this.toDos = [];
+    return this.toDos
   }
 
   clearCompleted() {
-
     this.toDos = this.toDos.filter(function (toDo) {
       return toDo.isDone === false;
     });

@@ -1,12 +1,41 @@
-class ToDoListComponent {
+import ToDoListStorage from "../storage"
+import ToDoListRender from "./toDoList.render";
+import ToDoList from "./toDoList.model";
+
+export default class ToDoListComponent {
+
+    data: ToDoListStorage;
+    newToDo: ToDoList;
+    toDoListRender: ToDoListRender;
 
     constructor() {
-        this.data = new Storage();
-        this.newToDo = new ToDoList(this.data);
+        this.data = new ToDoListStorage();
+        this.newToDo = new ToDoList();
         this.toDoListRender = new ToDoListRender();
 
+        const displayToDoList = () => {
+            let displayToDo = '';
+            if(this.newToDo.toDos.length === 0) {
+            this.toDoListRender.newTodoList.innerHTML = '';
+                this.newToDo.toDos = [];
+                this.data.saveData(this.newToDo.toDos);
+            }
+            this.newToDo.toDos.forEach((item, i) => {
+                displayToDo += ` 
+                <li>
+                    <input type='checkbox' id= 'item_${i}' ${item.isDone ? 'checked' : ''}> 
+                    <label for= 'item_${i}'>${item.title}</label>
+                    <br>
+                    <span> Data created: ${item.date}</span>
+                </li>
+                `;
+                this.toDoListRender.newTodoList.innerHTML = displayToDo;
+            });
+        }
+        
         this.toDoListRender.newTodoAdd.addEventListener('click', () => {
             if(!this.toDoListRender.newTodoInput.value)return;
+            this.newToDo.toDos = this.data.updateData();
             this.newToDo.addToDo(this.toDoListRender.newTodoInput.value);
             this.data.saveData(this.newToDo.toDos);
             this.toDoListRender.newTodoInput.value = '';
@@ -75,31 +104,9 @@ class ToDoListComponent {
             });
         });
 
-        window.onload = (event) => {
-            if(localStorage.getItem('todo')) {
-                this.newToDo.toDos = this.data.updateData();
-                displayToDoList();
-            }
-        };
-
-        const displayToDoList = () => {
-            let displayToDo = '';
-            if(this.newToDo.toDos.length === 0) {
-            this.toDoListRender.newTodoList.innerHTML = '';
-                this.newToDo.toDos = [];
-                this.data.saveData(this.newToDo.toDos);
-            }
-            this.newToDo.toDos.forEach((item, i) => {
-                displayToDo += ` 
-                <li>
-                    <input type='checkbox' id= 'item_${i}' ${item.isDone ? 'checked' : ''}> 
-                    <label for= 'item_${i}'>${item.title}</label>
-                    <br>
-                    <span> Data created: ${item.date}</span>
-                </li>
-                `;
-                this.toDoListRender.newTodoList.innerHTML = displayToDo;
-            });
+        if(localStorage.getItem('todo')) {
+            this.newToDo.toDos = this.data.updateData();
+            displayToDoList();
         }
     }
 }

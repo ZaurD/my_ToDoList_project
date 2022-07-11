@@ -1,4 +1,4 @@
-class ToDoListRender {
+export default class ToDoListRender {
 
     newTodoInput;
     newTodoAdd;
@@ -19,7 +19,7 @@ class ToDoListRender {
         this.search = this.getSearchButtonElement();
         this.allTasks = this.getAllTaskButtonElement();
         this.completedTasks = this.getCompletedTasksButtonElement();
-        this.tobeDoneButton = this.getTobeDoneButtonElement();
+        this.tobeDone = this.getTobeDoneButtonElement();
         this.clearCompleted = this.getClearCompletedButtonElement();
         this.clearAll = this.getClearAllButtonElement();
         this.newTodoList = this.getListElement();
@@ -38,34 +38,34 @@ class ToDoListRender {
 
     getTitleElement() {
         const title = document.createElement('h1');
-        title.classList.add('todoList_title');
+        title.classList.add('todoList__title');
         title.textContent = 'ToDo List';
         return title;
     }
 
     getMainElement() {
         const main = document.createElement('div');
-        main.classList.add('todoList_main');
+        main.classList.add('todoList__main');
         return main;
     }
 
     getInputElement() {
         this.newTodoInput = document.createElement('input');
-        this.newTodoInput.classList.add('todoList_input');
+        this.newTodoInput.classList.add('todoList__input');
         this.newTodoInput.placeholder = 'Text';
         return this.newTodoInput;
     }
 
     getAddButtonElement() {
         this.newTodoAdd = document.createElement('button');
-        this.newTodoAdd.classList.add('todoList_button');
+        this.newTodoAdd.classList.add('todoList__button');
         this.newTodoAdd.textContent = 'Add';
         return this.newTodoAdd;
     }
 
     getSearchButtonElement() {
         this.search = document.createElement('button');
-        this.search.classList.add('todoList_button');
+        this.search.classList.add('todoList__button');
         this.search.setAttribute('id', 'search');
         this.search.textContent = 'Search';
         return this.search;
@@ -73,7 +73,7 @@ class ToDoListRender {
 
     getAllTaskButtonElement() {
         this.allTasks = document.createElement('button');
-        this.allTasks.classList.add('todoList_button');
+        this.allTasks.classList.add('todoList__button');
         this.allTasks.setAttribute('id', 'allTasks');
         this.allTasks.textContent = 'All tasks';
         return this.allTasks;
@@ -81,7 +81,7 @@ class ToDoListRender {
 
     getCompletedTasksButtonElement() {
         this.completedTasks = document.createElement('button');
-        this.completedTasks.classList.add('todoList_button');
+        this.completedTasks.classList.add('todoList__button');
         this.completedTasks.setAttribute('id', 'completedTasks');
         this.completedTasks.textContent = 'Completed tasks';
         return this.completedTasks;
@@ -89,7 +89,7 @@ class ToDoListRender {
 
     getTobeDoneButtonElement() {
         this.tobeDone = document.createElement('button');
-        this.tobeDone.classList.add('todoList_button');
+        this.tobeDone.classList.add('todoList__button');
         this.tobeDone.setAttribute('id', 'tobeDone');
         this.tobeDone.textContent = 'To be done';
         return this.tobeDone;
@@ -97,7 +97,7 @@ class ToDoListRender {
 
     getClearCompletedButtonElement() {
         this.clearCompleted = document.createElement('button');
-        this.clearCompleted.classList.add('todoList_button');
+        this.clearCompleted.classList.add('todoList__button');
         this.clearCompleted.setAttribute('id', 'clearCompleted');
         this.clearCompleted.textContent = 'Delete completed';
         return this.clearCompleted;
@@ -105,7 +105,7 @@ class ToDoListRender {
 
     getClearAllButtonElement() {
         this.clearAll = document.createElement('button');
-        this.clearAll.classList.add('todoList_button');
+        this.clearAll.classList.add('todoList__button');
         this.clearAll.setAttribute('id', 'clearAll');
         this.clearAll.textContent = 'Delete all';
         return this.clearAll;
@@ -118,7 +118,7 @@ class ToDoListRender {
 
     getListElement() {
         this.newTodoList = document.createElement('ol');
-        this.newTodoList.classList.add('todoList_tasks');
+        this.newTodoList.classList.add('todoList__tasks');
         return this.newTodoList;
     }
 }

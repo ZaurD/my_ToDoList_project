@@ -1,0 +1,55 @@
+.weather {
+  background-color: white;
+  margin-bottom: 30px;
+  height: auto;
+  font-size: 20px;
+}
+
+.todoList__main {
+  display: flex;
+}
+
+.todoList {
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: #538d8a;
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+.todoList__title {
+  text-align: center;
+  margin-top: 0;
+  color: white;
+  font-size: 40px;
+}
+.todoList__main {
+  text-align: center;
+}
+.todoList__input {
+  width: 700px;
+  padding: 10px;
+}
+.todoList__button {
+  margin-left: 20px;
+  width: 100px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.todoList__tasks {
+  padding-left: 10px;
+}
+.todoList__tasks li {
+  border-bottom: 1px solid black;
+  padding: 5px 0;
+  font-size: 18px;
+  word-break: break-word;
+}
+.todoList__tasks li:last-child {
+  border-bottom: none;
+}
+.todoList__tasks span {
+  font-size: 15px;
+}
+
+/*# sourceMappingURL=styles.css.map */
