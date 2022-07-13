@@ -284,8 +284,9 @@ define("components/todoList/toDoList.component", ["require", "exports", "compone
             this.newToDo = new toDoList_model_1.default();
             this.toDoListRender = new toDoList_render_1.default();
             this.toDoListRender.newTodoAdd.addEventListener("click", () => {
-                if (!this.toDoListRender.newTodoInput.value)
+                if (!this.toDoListRender.newTodoInput.value) {
                     return;
+                }
                 this.newToDo.toDos = this.data.updateData();
                 this.newToDo.addToDo(this.toDoListRender.newTodoInput.value);
                 this.data.saveData(this.newToDo.toDos);
@@ -293,8 +294,9 @@ define("components/todoList/toDoList.component", ["require", "exports", "compone
                 this.displayToDoList();
             });
             this.toDoListRender.search.addEventListener("click", () => {
-                if (!this.toDoListRender.newTodoInput.value)
+                if (!this.toDoListRender.newTodoInput.value) {
                     return;
+                }
                 let newArray = this.newToDo.searchToDo(this.toDoListRender.newTodoInput.value);
                 if (newArray.length > 0) {
                     this.newToDo.toDos = newArray;

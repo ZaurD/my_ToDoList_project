@@ -3,17 +3,15 @@ import ToDoListRender from "./toDoList.render";
 import ToDoList from "../todoList/models/toDoList.model";
 
 export default class ToDoListComponent {
-  data: ToDoListStorage;
-  newToDo: ToDoList;
-  toDoListRender: ToDoListRender;
+  data = new ToDoListStorage();
+  newToDo = new ToDoList();
+  toDoListRender = new ToDoListRender();
 
   constructor() {
-    this.data = new ToDoListStorage();
-    this.newToDo = new ToDoList();
-    this.toDoListRender = new ToDoListRender();
-
     this.toDoListRender.newTodoAdd.addEventListener("click", () => {
-      if (!this.toDoListRender.newTodoInput.value) return;
+      if (!this.toDoListRender.newTodoInput.value) {
+        return;
+      }
       this.newToDo.toDos = this.data.updateData();
       this.newToDo.addToDo(this.toDoListRender.newTodoInput.value);
       this.data.saveData(this.newToDo.toDos);
@@ -22,7 +20,9 @@ export default class ToDoListComponent {
     });
 
     this.toDoListRender.search.addEventListener("click", () => {
-      if (!this.toDoListRender.newTodoInput.value) return;
+      if (!this.toDoListRender.newTodoInput.value) {
+        return;
+      }
       let newArray = this.newToDo.searchToDo(
         this.toDoListRender.newTodoInput.value
       );
