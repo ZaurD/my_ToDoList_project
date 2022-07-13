@@ -1,20 +1,19 @@
-import ToDoList from "./todoList/toDoList.model";
+import ToDo from "./todoList/models/toDo.model";
 
 export default class ToDoListStorage {
-    
-  storage: ToDoList[];
+  storage: ToDo[];
 
   constructor() {
     this.storage = this.updateData();
   }
 
-  saveData(data: ToDoList[] ) {
-      localStorage.setItem('todo', JSON.stringify(data));
+  saveData(data: ToDo[]) {
+    localStorage.setItem("todo", JSON.stringify(data));
   }
 
-  updateData() {
-    if(localStorage.getItem('todo')) {
-      return JSON.parse(localStorage.getItem('todo'));
+  updateData(): ToDo[] {
+    if (localStorage.getItem("todo")) {
+      return JSON.parse(localStorage.getItem("todo"));
     }
   }
 }

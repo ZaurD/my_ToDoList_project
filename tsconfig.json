@@ -5,11 +5,9 @@
     "target": "es6",
     "allowJs": true,
     "outFile": "dist/main.js",
-    "sourceMap": true,
+    "sourceMap": true
     // "watch": true
   },
 
-  "files": [
-  "main.ts"
-  ]
+  "files": ["main.ts"]
 }

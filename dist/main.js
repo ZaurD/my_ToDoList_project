@@ -34,17 +34,19 @@ define("components/weather/weather.render", ["require", "exports", "components/w
             this.apiKey = apiKey;
             this.cityName = cityName;
             const weather = new weather_model_1.default(this.apiKey, this.cityName);
-            weather.getWeather().then((data) => {
-                document.querySelector('.weather').innerHTML =
-                    `<marquee direction="right" scrollamount="5"> 
+            weather
+                .getWeather()
+                .then((data) => {
+                document.querySelector(".weather").innerHTML = `<marquee direction="right" scrollamount="5"> 
             ${data.name}, today: &emsp;
-            Temperature: ${(data.main.temp).toFixed()}&deg;C &emsp;     
-            Feel like: ${(data.main.feels_like).toFixed()}&deg;C &emsp;   
+            Temperature: ${data.main.temp.toFixed()}&deg;C &emsp;     
+            Feel like: ${data.main.feels_like.toFixed()}&deg;C &emsp;   
             Humidity: ${data.main.humidity}% &emsp; 
             Wind: ${data.wind.speed} km/h &emsp; 
             Pressure: ${data.main.pressure}
             </marquee>`;
-            }).catch((err) => {
+            })
+                .catch((err) => {
                 console.log(err.meassge);
             });
         }
@@ -63,57 +65,18 @@ define("components/weather/weather.component", ["require", "exports", "component
     }
     exports.default = WeatherComponent;
 });
-define("components/todoList/toDoList.model", ["require", "exports"], function (require, exports) {
+define("components/todoList/models/toDo.model", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    class ToDoList {
-        constructor(initialData = []) {
-            this.toDos = initialData;
-        }
-        addToDo(todoText) {
-            if (this.toDos.find(o => o.title === todoText)) {
-                alert("duplicates found");
-            }
-            else {
-                this.todo = {
-                    id: Math.floor(Math.random() * 9999),
-                    title: todoText,
-                    date: new Date().toLocaleString(),
-                    isDone: false
-                };
-                this.toDos.push(this.todo);
-            }
-        }
-        searchToDo(todoText) {
-            this.toDos = this.toDos.filter(function (toDo) {
-                return toDo.title === todoText;
-            });
-            return this.toDos;
-        }
-        completedTasks() {
-            this.toDos = this.toDos.filter(function (toDo) {
-                return toDo.isDone === true;
-            });
-            return this.toDos;
-        }
-        tobeDone() {
-            this.toDos = this.toDos.filter(function (toDo) {
-                return toDo.isDone === false;
-            });
-            return this.toDos;
-        }
-        clearAll() {
-            this.toDos = [];
-            return this.toDos;
-        }
-        clearCompleted() {
-            this.toDos = this.toDos.filter(function (toDo) {
-                return toDo.isDone === false;
-            });
-            return this.toDos;
+    class ToDo {
+        constructor(todoText) {
+            this.id = Math.floor(Math.random() * 9999);
+            this.title = todoText;
+            this.date = new Date().toLocaleString();
+            this.isDone = false;
         }
     }
-    exports.default = ToDoList;
+    exports.default = ToDo;
 });
 define("components/storage", ["require", "exports"], function (require, exports) {
     "use strict";
@@ -123,11 +86,11 @@ define("components/storage", ["require", "exports"], function (require, exports)
             this.storage = this.updateData();
         }
         saveData(data) {
-            localStorage.setItem('todo', JSON.stringify(data));
+            localStorage.setItem("todo", JSON.stringify(data));
         }
         updateData() {
-            if (localStorage.getItem('todo')) {
-                return JSON.parse(localStorage.getItem('todo'));
+            if (localStorage.getItem("todo")) {
+                return JSON.parse(localStorage.getItem("todo"));
             }
         }
     }
@@ -150,88 +113,169 @@ define("components/todoList/toDoList.render", ["require", "exports"], function (
             this.clearCompleted = this.getClearCompletedButtonElement();
             this.clearAll = this.getClearAllButtonElement();
             this.newTodoList = this.getListElement();
-            document.querySelector('.todoList').append(title, main, wrapper);
+            document.querySelector(".todoList").append(title, main, wrapper);
             main.append(this.newTodoInput, this.newTodoAdd, this.search, this.allTasks, this.completedTasks, this.tobeDone, this.clearCompleted, this.clearAll);
             wrapper.append(this.newTodoList);
         }
         getTitleElement() {
-            const title = document.createElement('h1');
-            title.classList.add('todoList__title');
-            title.textContent = 'ToDo List';
-            return title;
+            const title = document.createElement("h1");
+            title.classList.add("todoList__title");
+            title.textContent = "ToDo List";
+            {
+                return title;
+            }
         }
         getMainElement() {
-            const main = document.createElement('div');
-            main.classList.add('todoList__main');
-            return main;
+            const main = document.createElement("div");
+            main.classList.add("todoList__main");
+            {
+                return main;
+            }
         }
         getInputElement() {
-            this.newTodoInput = document.createElement('input');
-            this.newTodoInput.classList.add('todoList__input');
-            this.newTodoInput.placeholder = 'Text';
-            return this.newTodoInput;
+            this.newTodoInput = document.createElement("input");
+            this.newTodoInput.classList.add("todoList__input");
+            this.newTodoInput.placeholder = "Text";
+            {
+                return this.newTodoInput;
+            }
         }
         getAddButtonElement() {
-            this.newTodoAdd = document.createElement('button');
-            this.newTodoAdd.classList.add('todoList__button');
-            this.newTodoAdd.textContent = 'Add';
-            return this.newTodoAdd;
+            this.newTodoAdd = document.createElement("button");
+            this.newTodoAdd.classList.add("todoList__button");
+            this.newTodoAdd.textContent = "Add";
+            {
+                return this.newTodoAdd;
+            }
         }
         getSearchButtonElement() {
-            this.search = document.createElement('button');
-            this.search.classList.add('todoList__button');
-            this.search.setAttribute('id', 'search');
-            this.search.textContent = 'Search';
-            return this.search;
+            this.search = document.createElement("button");
+            this.search.classList.add("todoList__button");
+            this.search.setAttribute("id", "search");
+            this.search.textContent = "Search";
+            {
+                return this.search;
+            }
         }
         getAllTaskButtonElement() {
-            this.allTasks = document.createElement('button');
-            this.allTasks.classList.add('todoList__button');
-            this.allTasks.setAttribute('id', 'allTasks');
-            this.allTasks.textContent = 'All tasks';
-            return this.allTasks;
+            this.allTasks = document.createElement("button");
+            this.allTasks.classList.add("todoList__button");
+            this.allTasks.setAttribute("id", "allTasks");
+            this.allTasks.textContent = "All tasks";
+            {
+                return this.allTasks;
+            }
         }
         getCompletedTasksButtonElement() {
-            this.completedTasks = document.createElement('button');
-            this.completedTasks.classList.add('todoList__button');
-            this.completedTasks.setAttribute('id', 'completedTasks');
-            this.completedTasks.textContent = 'Completed tasks';
-            return this.completedTasks;
+            this.completedTasks = document.createElement("button");
+            this.completedTasks.classList.add("todoList__button");
+            this.completedTasks.setAttribute("id", "completedTasks");
+            this.completedTasks.textContent = "Completed tasks";
+            {
+                return this.completedTasks;
+            }
         }
         getTobeDoneButtonElement() {
-            this.tobeDone = document.createElement('button');
-            this.tobeDone.classList.add('todoList__button');
-            this.tobeDone.setAttribute('id', 'tobeDone');
-            this.tobeDone.textContent = 'To be done';
-            return this.tobeDone;
+            this.tobeDone = document.createElement("button");
+            this.tobeDone.classList.add("todoList__button");
+            this.tobeDone.setAttribute("id", "tobeDone");
+            this.tobeDone.textContent = "To be done";
+            {
+                return this.tobeDone;
+            }
         }
         getClearCompletedButtonElement() {
-            this.clearCompleted = document.createElement('button');
-            this.clearCompleted.classList.add('todoList__button');
-            this.clearCompleted.setAttribute('id', 'clearCompleted');
-            this.clearCompleted.textContent = 'Delete completed';
-            return this.clearCompleted;
+            this.clearCompleted = document.createElement("button");
+            this.clearCompleted.classList.add("todoList__button");
+            this.clearCompleted.setAttribute("id", "clearCompleted");
+            this.clearCompleted.textContent = "Delete completed";
+            {
+                return this.clearCompleted;
+            }
         }
         getClearAllButtonElement() {
-            this.clearAll = document.createElement('button');
-            this.clearAll.classList.add('todoList__button');
-            this.clearAll.setAttribute('id', 'clearAll');
-            this.clearAll.textContent = 'Delete all';
-            return this.clearAll;
+            this.clearAll = document.createElement("button");
+            this.clearAll.classList.add("todoList__button");
+            this.clearAll.setAttribute("id", "clearAll");
+            this.clearAll.textContent = "Delete all";
+            {
+                return this.clearAll;
+            }
         }
         getWrapperElemet() {
-            const wrapper = document.createElement('div');
-            return wrapper;
+            const wrapper = document.createElement("div");
+            {
+                return wrapper;
+            }
         }
         getListElement() {
-            this.newTodoList = document.createElement('ol');
-            this.newTodoList.classList.add('todoList__tasks');
-            return this.newTodoList;
+            this.newTodoList = document.createElement("ol");
+            this.newTodoList.classList.add("todoList__tasks");
+            {
+                return this.newTodoList;
+            }
         }
     }
     exports.default = ToDoListRender;
 });
-define("components/todoList/toDoList.component", ["require", "exports", "components/storage", "components/todoList/toDoList.render", "components/todoList/toDoList.model"], function (require, exports, storage_1, toDoList_render_1, toDoList_model_1) {
+define("components/todoList/models/toDoList.model", ["require", "exports", "components/todoList/models/toDo.model"], function (require, exports, toDo_model_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    class ToDoList {
+        constructor(initialData = []) {
+            this.toDos = initialData;
+        }
+        addToDo(todoText) {
+            if (this.toDos.find((o) => o.title === todoText)) {
+                alert("duplicates found");
+            }
+            else {
+                this.todo = new toDo_model_1.default(todoText);
+                this.toDos.push(this.todo);
+            }
+        }
+        searchToDo(todoText) {
+            this.toDos = this.toDos.filter(function (toDo) {
+                return toDo.title === todoText;
+            });
+            {
+                return this.toDos;
+            }
+        }
+        completedTasks() {
+            this.toDos = this.toDos.filter(function (toDo) {
+                return toDo.isDone === true;
+            });
+            {
+                return this.toDos;
+            }
+        }
+        tobeDone() {
+            this.toDos = this.toDos.filter(function (toDo) {
+                return toDo.isDone === false;
+            });
+            {
+                return this.toDos;
+            }
+        }
+        clearAll() {
+            this.toDos = [];
+            {
+                return this.toDos;
+            }
+        }
+        clearCompleted() {
+            this.toDos = this.toDos.filter(function (toDo) {
+                return toDo.isDone === false;
+            });
+            {
+                return this.toDos;
+            }
+        }
+    }
+    exports.default = ToDoList;
+});
+define("components/todoList/toDoList.component", ["require", "exports", "components/storage", "components/todoList/toDoList.render", "components/todoList/models/toDoList.model"], function (require, exports, storage_1, toDoList_render_1, toDoList_model_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     class ToDoListComponent {
@@ -239,82 +283,63 @@ define("components/todoList/toDoList.component", ["require", "exports", "compone
             this.data = new storage_1.default();
             this.newToDo = new toDoList_model_1.default();
             this.toDoListRender = new toDoList_render_1.default();
-            const displayToDoList = () => {
-                let displayToDo = '';
-                if (this.newToDo.toDos.length === 0) {
-                    this.toDoListRender.newTodoList.innerHTML = '';
-                    this.newToDo.toDos = [];
-                    this.data.saveData(this.newToDo.toDos);
-                }
-                this.newToDo.toDos.forEach((item, i) => {
-                    displayToDo += ` 
-                <li>
-                    <input type='checkbox' id= 'item_${i}' ${item.isDone ? 'checked' : ''}> 
-                    <label for= 'item_${i}'>${item.title}</label>
-                    <br>
-                    <span> Data created: ${item.date}</span>
-                </li>
-                `;
-                    this.toDoListRender.newTodoList.innerHTML = displayToDo;
-                });
-            };
-            this.toDoListRender.newTodoAdd.addEventListener('click', () => {
+            this.toDoListRender.newTodoAdd.addEventListener("click", () => {
                 if (!this.toDoListRender.newTodoInput.value)
                     return;
                 this.newToDo.toDos = this.data.updateData();
                 this.newToDo.addToDo(this.toDoListRender.newTodoInput.value);
                 this.data.saveData(this.newToDo.toDos);
-                this.toDoListRender.newTodoInput.value = '';
-                displayToDoList();
+                this.toDoListRender.newTodoInput.value = "";
+                this.displayToDoList();
             });
-            this.toDoListRender.search.addEventListener('click', () => {
+            this.toDoListRender.search.addEventListener("click", () => {
                 if (!this.toDoListRender.newTodoInput.value)
                     return;
                 let newArray = this.newToDo.searchToDo(this.toDoListRender.newTodoInput.value);
                 if (newArray.length > 0) {
                     this.newToDo.toDos = newArray;
-                    displayToDoList();
+                    this.displayToDoList();
                 }
                 else
-                    alert('Nothing was found!');
-                this.toDoListRender.newTodoInput.value = '';
+                    alert("Nothing was found!");
+                this.toDoListRender.newTodoInput.value = "";
                 this.newToDo.toDos = this.data.updateData();
             });
-            this.toDoListRender.allTasks.addEventListener('click', () => {
+            this.toDoListRender.allTasks.addEventListener("click", () => {
                 this.newToDo.toDos = this.data.updateData();
-                displayToDoList();
+                this.displayToDoList();
             });
-            this.toDoListRender.completedTasks.addEventListener('click', () => {
+            this.toDoListRender.completedTasks.addEventListener("click", () => {
                 this.newToDo.toDos = this.data.updateData();
                 let newArray = this.newToDo.completedTasks();
                 if (newArray.length > 0) {
                     this.newToDo.toDos = newArray;
-                    displayToDoList();
+                    this.displayToDoList();
                 }
             });
-            this.toDoListRender.tobeDone.addEventListener('click', () => {
+            this.toDoListRender.tobeDone.addEventListener("click", () => {
                 this.newToDo.toDos = this.data.updateData();
                 let newArray = this.newToDo.tobeDone();
                 if (newArray.length > 0) {
                     this.newToDo.toDos = newArray;
-                    displayToDoList();
+                    this.displayToDoList();
                 }
             });
             this.toDoListRender.clearAll.addEventListener("click", () => {
                 this.newToDo.toDos = this.newToDo.clearAll();
-                this.toDoListRender.newTodoList.innerHTML = '';
+                this.toDoListRender.newTodoList.innerHTML = "";
                 this.data.saveData(this.newToDo.toDos);
                 this.newToDo.toDos = [];
-                displayToDoList();
+                this.displayToDoList();
             });
             this.toDoListRender.clearCompleted.addEventListener("click", () => {
                 this.newToDo.toDos = this.newToDo.tobeDone();
                 this.data.saveData(this.newToDo.toDos);
-                displayToDoList();
+                this.displayToDoList();
             });
-            this.toDoListRender.newTodoList.addEventListener('change', (event) => {
-                let idInput = event.target.getAttribute('id');
-                let forLabel = this.toDoListRender.newTodoList.querySelector('[for=' + idInput + ']');
+            this.toDoListRender.newTodoList.addEventListener("change", (event) => {
+                let idInput = event.target.getAttribute("id");
+                let forLabel = this.toDoListRender.newTodoList.querySelector("[for=" + idInput + "]");
                 let valueLabel = forLabel.innerHTML;
                 this.newToDo.toDos.forEach((item) => {
                     if (item.title === valueLabel) {
@@ -323,10 +348,29 @@ define("components/todoList/toDoList.component", ["require", "exports", "compone
                     }
                 });
             });
-            if (localStorage.getItem('todo')) {
+            if (localStorage.getItem("todo")) {
                 this.newToDo.toDos = this.data.updateData();
-                displayToDoList();
+                this.displayToDoList();
             }
+        }
+        displayToDoList() {
+            let displayToDo = "";
+            if (this.newToDo.toDos.length === 0) {
+                this.toDoListRender.newTodoList.innerHTML = "";
+                this.newToDo.toDos = [];
+                this.data.saveData(this.newToDo.toDos);
+            }
+            this.newToDo.toDos.forEach((item, i) => {
+                displayToDo += ` 
+              <li>
+                  <input type='checkbox' id= 'item_${i}' ${item.isDone ? "checked" : ""}> 
+                  <label for= 'item_${i}'>${item.title}</label>
+                  <br>
+                  <span> Data created: ${item.date}</span>
+              </li>
+              `;
+                this.toDoListRender.newTodoList.innerHTML = displayToDo;
+            });
         }
     }
     exports.default = ToDoListComponent;
