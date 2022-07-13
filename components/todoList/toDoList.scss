@@ -1,64 +1,62 @@
-
 @import "../weather/weather.scss";
-@import '../color.scss';
+@import "../color.scss";
 
 @mixin center {
-    text-align: center;
+  text-align: center;
 }
 
 %flex {
-    display: flex;
+  display: flex;
 }
 
 .todoList {
-    max-width: 1000px;
-    margin:  40px auto;
-    background-color: $color--emerald;
-    padding: 30px;
-    border-radius: 10px;
-    border: 2px solid $color--black;
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: $color--emerald;
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid $color--black;
 
-    &__title {
-        @include center;
-        margin-top: 0;
-        color: $color--white;
-        font-size: 40px; 
-    }
+  &__title {
+    @include center;
+    margin-top: 0;
+    color: $color--white;
+    font-size: 40px;
+  }
 
-    &__main {
-        @include center;
-        @extend %flex;
-    }
+  &__main {
+    @include center;
+    @extend %flex;
+  }
 
-    &__input {
-        width: 700px;
-        padding: 10px; 
-    }
+  &__input {
+    width: 700px;
+    padding: 10px;
+  }
 
-    &__button {
-        margin-left: 20px;
-        width: 100px;
-        cursor: pointer;
-        font-size: 15px;
-    }
+  &__button {
+    margin-left: 20px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 15px;
+  }
 
-    &__tasks {
-        padding-left: 10px; 
-    }
+  &__tasks {
+    padding-left: 10px;
+  }
 
-    &__tasks li {
-        border-bottom: 1px solid $color--black;
-        padding: 5px 0;
-        font-size: 18px;
-        word-break: break-word;
-    }
+  &__tasks li {
+    border-bottom: 1px solid $color--black;
+    padding: 5px 0;
+    font-size: 18px;
+    word-break: break-word;
+  }
 
-    &__tasks li:last-child {
-        border-bottom: none;
-    }
+  &__tasks li:last-child {
+    border-bottom: none;
+  }
 
-    &__tasks span {
-        font-size: 15px;
-    }
+  &__tasks span {
+    font-size: 15px;
+  }
 }
-
